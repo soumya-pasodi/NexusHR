@@ -4,6 +4,7 @@ import com.nexushr.entity.Employee;
 import com.nexushr.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.nexushr.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class EmployeeService {
     public Employee getById(Long id) {
         return employeeRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Employee not found"));
+                        new ResourceNotFoundException(
+                                "Employee not found"));
     }
 
     public Employee update(Long id, Employee employee) {
