@@ -4,6 +4,7 @@ import com.nexushr.entity.Employee;
 import com.nexushr.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class EmployeeController {
 
     @PostMapping
     public Employee addEmployee(
-            @RequestBody Employee employee) {
+            @Valid @RequestBody Employee employee) {
 
         return employeeService.save(employee);
     }
@@ -36,7 +37,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public Employee updateEmployee(
             @PathVariable Long id,
-            @RequestBody Employee employee) {
+            @Valid @RequestBody Employee employee) {
 
         return employeeService.update(id, employee);
     }

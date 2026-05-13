@@ -2,6 +2,8 @@ package com.nexushr.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Getter
@@ -15,11 +17,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Department is required")
     private String department;
 
+    @NotBlank(message = "Position is required")
     private String position;
 
-    private Double salary;
+    @Positive(message = "Salary must be positive")
+    private double salary;
 }
