@@ -1,5 +1,6 @@
 package com.nexushr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotBlank;
@@ -17,11 +18,13 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    @JsonIgnore
+    private Department department;
+
     @NotBlank(message = "Name is required")
     private String name;
-
-    @NotBlank(message = "Department is required")
-    private String department;
 
     @NotBlank(message = "Position is required")
     private String position;
